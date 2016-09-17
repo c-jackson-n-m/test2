@@ -12,7 +12,7 @@ app.get("/girls", function(req,res,next){
 	res.send("Yeah, we have the all!");
 });
 app.get("/people", function(req,res,next){
-	res.send(res.url);
+	res.send(req.url);
 });
 
 app.set("port", process.env.OPENSHIFT_NODEJS_PORT || 3000);
