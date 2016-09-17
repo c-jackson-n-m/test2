@@ -1,18 +1,22 @@
-var app = require("express")();
+var express = require("express"),
+	path = require("path");
 
+//create a new express app
+var app = express();
+
+//connect to mongoose
+//mongoose.connect(process.env.OPENSHIFT_MONGODB_DB_URL+"users");
+
+//add app variables
+app.set("port", process.env.OPENSHIFT_NODEJS_PORT || 8888);
+app.set("ip", process.env.OPENSHIFT_NODEJS_IP || "127.0.0.1");
+
+//configure some connect middlewares
 app.get("/", function(req,res,next){
-	res.send("I am an expressjs app");
-});
-app.get("/message", function(req,res,next){
-	res.send("I am the message");
-});
-app.get("/girls", function(req,res,next){
-	res.send("Yeah, we have the all!");
+	res.send("Hello world");
 });
 
-app.set("port", 3000 || process.env.OPENSHIFT_NODEJS_PORT);
-app.set("ip", "127.0.0.1" || process.env.OPENSHIFT_NODEJS_IP);
-
-app.listen(app.get("port"), app.get("ip"), function(){
-	console.log("Listening...");
+//listen for http connections
+app.listen(app.get("port"), app.get("ip"), function(ev){
+	console.log("Listening for http connections on some port and some ip address");
 });
