@@ -11,6 +11,9 @@ app.get("/message", function(req,res,next){
 app.get("/girls", function(req,res,next){
 	res.send("Yeah, we have the all!");
 });
+app.get("/people", function(req,res,next){
+	res.send(res.url);
+});
 
 app.set("port", process.env.OPENSHIFT_NODEJS_PORT || 3000);
 app.set("ip",   process.env.OPENSHIFT_NODEJS_IP || "127.0.0.1");
